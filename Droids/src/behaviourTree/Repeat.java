@@ -1,7 +1,6 @@
 package behaviourTree;
 
-import org.newdawn.slick.GameContainer;
-
+import main.Board;
 import main.Droid;
 
 public class Repeat extends Routine {
@@ -39,7 +38,7 @@ public class Repeat extends Routine {
 	}
 
 	@Override
-	public void act(Droid droid, int delta, GameContainer gc) {
+	public void act(Droid droid, int delta, Board board) {
 		if (routine.isFailure()) {
 			fail();
 		} else if (routine.isSuccess()) {
@@ -54,7 +53,7 @@ public class Repeat extends Routine {
 			}
 		}
 		if (routine.isRunning()) {
-			routine.act(droid, delta, gc);
+			routine.act(droid, delta, board);
 		}
 	}
 }

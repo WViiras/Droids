@@ -1,15 +1,13 @@
 package behaviourTree;
 
-import org.newdawn.slick.GameContainer;
-
+import main.Board;
 import main.Droid;
-import main.Main;
 
 public class MoveTo extends Routine {
 
 	final protected float destX;
 	final protected float destY;
-	final float EPSILON = 0.1f;
+	final float EPSILON = 1f;
 
 	public MoveTo(float destX, float destY) {
 		super();
@@ -22,7 +20,7 @@ public class MoveTo extends Routine {
 	}
 
 	@Override
-	public void act(Droid droid, int delta, GameContainer gc) {
+	public void act(Droid droid, int delta, Board board) {
 		if (isRunning()) {
 			if (!droid.isAlive()) {
 				fail();
@@ -52,10 +50,6 @@ public class MoveTo extends Routine {
 				droid.setY(droid.getY() - dist);
 			}
 		}
-		Main.d.add("x", droid.getX());
-		Main.d.add("y", droid.getY());
-		Main.d.add("destX", destX);
-		Main.d.add("destY", destY);
 
 		if (isDroidAtDestination(droid)) {
 			succeed();
@@ -67,9 +61,7 @@ public class MoveTo extends Routine {
 
 		if(Math.abs(destX-droid.getX())<EPSILON&&Math.abs(destY-droid.getY())<EPSILON)
 			return true;
-		
-//		if (Float.compare(destX, droid.getX()) == 0 && Float.compare(destY, droid.getY()) == 0)
-//			return true;
+		}
 
 		return false;
 	}

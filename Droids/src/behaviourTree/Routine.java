@@ -1,7 +1,6 @@
 package behaviourTree;
 
-import org.newdawn.slick.GameContainer;
-
+import main.Board;
 import main.Droid;
 
 public abstract class Routine {
@@ -23,7 +22,7 @@ public abstract class Routine {
 
 	public abstract void reset();
 
-	public abstract void act(Droid droid, int delta, GameContainer gc);
+	public abstract void act(Droid droid, int delta, Board board);
 
 	protected void succeed() {
 		System.out.println(">>> Routine: " + this.getClass().getSimpleName() + " SUCCEEDED");

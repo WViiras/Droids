@@ -2,19 +2,20 @@ package behaviourTree;
 
 import java.util.Random;
 
-import org.newdawn.slick.GameContainer;
+import main.Board;
 import main.Droid;
 
 public class Wander extends Routine {
 
+	private Board board;
 	private static Random random = new Random();
-	private final GameContainer gc;
 	private MoveTo moveTo;
+	private Stand stand;
 
-	public Wander(GameContainer gc) {
+	public Wander(Board board) {
 		super();
-		this.gc = gc;
-		this.moveTo = new MoveTo(random.nextInt(gc.getWidth()-100), random.nextInt(gc.getHeight()-100));
+		this.board = board;
+		reset();
 	}
 
 	@Override
@@ -24,15 +25,18 @@ public class Wander extends Routine {
 	}
 
 	public void reset() {
-		this.moveTo = new MoveTo(random.nextInt(gc.getWidth()), random.nextInt(gc.getHeight()));
+		this.moveTo = new MoveTo(random.nextInt(board.width), random.nextInt(board.height));
 	}
 
 	@Override
-	public void act(Droid droid, int delta, GameContainer gc) {
+	public void act(Droid droid, int delta, Board board) {
+
 		if (!moveTo.isRunning()) {
 			return;
 		}
-		this.moveTo.act(droid, delta, gc);
+
+		this.moveTo.act(droid, delta, board);
+
 		if (this.moveTo.isSuccess()) {
 			succeed();
 		} else if (this.moveTo.isFailure()) {

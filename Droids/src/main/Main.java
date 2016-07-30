@@ -1,7 +1,6 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -13,7 +12,7 @@ import behaviourTree.*;
 
 public class Main extends BasicGame {
 
-	List<Droid> droids;
+	Board board;
 	Controller cont;
 	public static final Debug d = new Debug();
 
@@ -23,8 +22,8 @@ public class Main extends BasicGame {
 
 	public static void main(String[] args) {
 
-		int width = 800;
-		int height = 600;
+		int width = 1000;
+		int height = 700;
 		try {
 			AppGameContainer agc = new AppGameContainer(new Main("Droids"));
 			agc.setDisplayMode(width, height, false);
@@ -41,17 +40,19 @@ public class Main extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 
-		droids = new ArrayList<Droid>();
+		this.board = new Board(gc);
 
-		cont = new Controller(droids);
+		cont = new Controller(board);
 
-		Droid d1 = new Droid(200, 200);
+		Random rand = new Random();
 
-//		d1.setRoutine(new MoveTo(100, 100));
-		d1.setRoutine(new Repeat(new Wander(gc)));
+		for (int i = 0; i < 4; i++) {
+			board.addDroid(i, new Droid(board.id, (float)rand.nextInt(board.width), (float)rand.nextInt(board.height)));
+		}
 
-		droids.add(d1);
-
+		for (Droid droid : board.getDroids()) {
+			droid.setRoutine(new Repeat(new Wander(board)));
+		}
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class Main extends BasicGame {
 
 		cont.render(gc, g);
 
-		for (Droid droid : droids) {
+		for (Droid droid : board.getDroids()) {
 			droid.render(gc, g);
 		}
 
@@ -69,10 +70,10 @@ public class Main extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
 
-		cont.update(gc, delta);
+		cont.update(gc, delta, board);
 
-		for (Droid droid : droids) {
-			droid.update(gc, delta);
+		for (Droid droid : board.getDroids()) {
+			droid.update(gc, delta, board);
 		}
 	}
 
