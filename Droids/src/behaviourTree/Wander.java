@@ -32,13 +32,25 @@ public class Wander extends Routine {
 	public void act(Droid droid, int delta, Board board) {
 
 		if (!moveTo.isRunning()) {
+			if (stand.isRunning()) {
+				this.stand.act(droid, delta, board);
+
+				if (stand.isSuccess()) {
+					succeed();
+				}
+			}
 			return;
 		}
 
 		this.moveTo.act(droid, delta, board);
 
 		if (this.moveTo.isSuccess()) {
-			succeed();
+
+			if (stand == null || !stand.isRunning()) {
+				stand = new Stand(2);
+				stand.start();
+			}
+
 		} else if (this.moveTo.isFailure()) {
 			fail();
 		}

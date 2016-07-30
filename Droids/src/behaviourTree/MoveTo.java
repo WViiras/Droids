@@ -34,7 +34,7 @@ public class MoveTo extends Routine {
 
 	private void moveDroid(Droid droid, int delta) {
 
-		float dist = droid.speed * delta;
+		float dist = droid.getSpeed() * delta;
 
 		if (droid.getX() != destX) {
 			if (destX > droid.getX()) {
@@ -59,7 +59,7 @@ public class MoveTo extends Routine {
 
 	private boolean isDroidAtDestination(Droid droid) {
 
-		if(Math.abs(destX-droid.getX())<EPSILON&&Math.abs(destY-droid.getY())<EPSILON)
+		if (Math.abs(destX - droid.getX()) < EPSILON && Math.abs(destY - droid.getY()) < EPSILON) {
 			return true;
 		}
 
