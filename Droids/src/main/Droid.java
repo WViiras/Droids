@@ -69,6 +69,14 @@ public class Droid {
 
 	public void render(GameContainer gc, Graphics g) {
 		renderDroid(g);
+		renderDebug(g);
+	}
+
+	private void renderDebug(Graphics g) {
+		debug.add("name", name);
+		debug.add("x", x);
+		debug.add("y", y);
+		debug.droidDraw(g, this);
 	}
 
 	public void update(GameContainer gc, int delta, Board board) {

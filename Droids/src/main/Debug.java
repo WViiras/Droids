@@ -31,4 +31,18 @@ public class Debug {
 			renderHeight += renderStep;
 		}
 	}
+
+	public void droidDraw(Graphics g, Droid d) {
+
+		float renderHeight = d.getY() + d.size;
+		float renderStep = 16;
+
+		for (Map.Entry<String, Object> entry : debug.entrySet()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+
+			g.drawString(key + ": " + value, d.getX(), renderHeight);
+			renderHeight += renderStep;
+		}
+	}
 }
