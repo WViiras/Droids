@@ -6,14 +6,13 @@ import org.newdawn.slick.Graphics;
 
 import behaviourTree.Routine;
 
-//import BehaviourTree.Routine;
-
 public class Droid {
 
+	private String name;
 	private float x, y;
 	public float size;
 
-	public float speed;
+	private float speed;
 
 	Routine routine;
 
@@ -35,28 +34,49 @@ public class Droid {
 		this.y = y;
 	}
 
-	public Droid() {
-		this(0f, 0f);
+	public String getName() {
+		return name;
 	}
 
-	public Droid(float x, float y) {
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public float getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(float speed) {
+		this.speed = speed;
+	}
+
+	public Droid() {
+		this(-1);
+	}
+
+	public Droid(int id) {
+		this(id, 0f, 0f);
+	}
+
+	public Droid(int id, float x, float y) {
 		this.x = x;
 		this.y = y;
 		size = 25;
-		speed = 0.1f;
+		setSpeed(0.1f);
 		debug = new Debug();
+		this.name = String.valueOf(id);
 	}
 
 	public void render(GameContainer gc, Graphics g) {
 		renderDroid(g);
 	}
 
-	public void update(GameContainer gc, int delta) {
+	public void update(GameContainer gc, int delta, Board board) {
 		if (routine.getState() == null) {
 			routine.start();
 		}
 
-		routine.act(this, delta, gc);
+		routine.act(this, delta, board);
 	}
 
 	public void setRoutine(Routine routine) {
