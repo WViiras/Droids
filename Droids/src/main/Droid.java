@@ -10,31 +10,56 @@ public class Droid {
 
 	/* FIELD */
 	private String name;
-	public Vector2 location;
+	public Vector2 loc;
+	private float rotation;
 
-	public float size;
+	private float size;
 	private float maxSpeed;
 	private float speed;
 
 	Routine routine;
-	Debug debug;
+	public Debug debug;
 
 	/* GET SET */
 
 	public float getX() {
-		return location.getX();
+		return loc.getX();
 	}
 
 	public void setX(float x) {
-		location.setX(x);
+		loc.setX(x);
 	}
 
 	public float getY() {
-		return location.getY();
+		return loc.getY();
 	}
 
 	public void setY(float y) {
-		location.setY(y);
+		loc.setY(y);
+	}
+
+	public Vector2 getLoc() {
+		return loc;
+	}
+
+	public void setLoc(float x, float y) {
+		loc.setLocation(x, y);
+	}
+
+	public float getRotation() {
+		return rotation;
+	}
+
+	public void setRotation(float rotation) {
+		this.rotation = rotation;
+	}
+
+	public float getSize() {
+		return size;
+	}
+
+	public void setSize(float size) {
+		this.size = size;
 	}
 
 	public String getName() {
@@ -71,7 +96,7 @@ public class Droid {
 	}
 
 	public Droid(int id, float x, float y) {
-		location = new Vector2(x, y);
+		loc = new Vector2(x, y);
 
 		size = 25;
 		setMaxSpeed(0.1f);
@@ -87,8 +112,8 @@ public class Droid {
 
 	private void renderDebug(Graphics g) {
 		debug.add("name", name);
-		debug.add("x", location.getX());
-		debug.add("y", location.getY());
+		debug.add("x", loc.getX());
+		debug.add("y", loc.getY());
 		debug.droidDraw(g, this);
 	}
 
@@ -106,7 +131,7 @@ public class Droid {
 
 	private void renderDroid(Graphics g) {
 		g.setColor(Color.lightGray);
-		g.fillOval(location.getX(), location.getY(), size, size);
+		g.fillOval(loc.getX(), loc.getY(), size, size);
 	}
 
 	public boolean isAlive() {

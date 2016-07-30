@@ -2,17 +2,17 @@ package behaviourTree;
 
 import main.Board;
 import main.Droid;
+import main.Vector2;
 
 public class MoveTo extends Routine {
 
-	final protected float destX;
-	final protected float destY;
+	final protected Vector2 dest;
+
 	final float EPSILON = 1f;
 
 	public MoveTo(float destX, float destY) {
 		super();
-		this.destX = destX;
-		this.destY = destY;
+		this.dest = new Vector2(destX, destY);
 	}
 
 	public void reset() {
@@ -21,6 +21,8 @@ public class MoveTo extends Routine {
 
 	@Override
 	public void act(Droid droid, int delta, Board board) {
+		droid.debug.add("destX", dest.getX());
+		droid.debug.add("destY", dest.getY());
 		if (isRunning()) {
 			if (!droid.isAlive()) {
 				fail();
@@ -34,22 +36,28 @@ public class MoveTo extends Routine {
 
 	private void moveDroid(Droid droid, int delta) {
 
-		float dist = droid.getSpeed() * delta;
+		float newX = droid.getX();
+		float newY = droid.getY();
 
-		if (droid.getX() != destX) {
-			if (destX > droid.getX()) {
-				droid.setX(droid.getX() + dist);
+		float speed = droid.getSpeed() * delta;
+
+		if (droid.getX() != dest.getX()) {
+			if (dest.getX() > droid.getX()) {
+				newX=droid.getX() + speed;
 			} else {
-				droid.setX(droid.getX() - dist);
+				newX=droid.getX() - speed;
 			}
 		}
-		if (droid.getY() != destY) {
-			if (destY > droid.getY()) {
-				droid.setY(droid.getY() + dist);
+		if (droid.getY() != dest.getY()) {
+			if (dest.getY() > droid.getY()) {
+				newY=droid.getY() + speed;
 			} else {
-				droid.setY(droid.getY() - dist);
+				newY=droid.getY() - speed;
 			}
 		}
+
+		droid.setX(newX);
+		droid.setY(newY);
 
 		if (isDroidAtDestination(droid)) {
 			succeed();
@@ -59,7 +67,7 @@ public class MoveTo extends Routine {
 
 	private boolean isDroidAtDestination(Droid droid) {
 
-		if (Math.abs(destX - droid.getX()) < EPSILON && Math.abs(destY - droid.getY()) < EPSILON) {
+		if (Math.abs(dest.getX() - droid.getX()) < EPSILON && Math.abs(dest.getY() - droid.getY()) < EPSILON) {
 			return true;
 		}
 
