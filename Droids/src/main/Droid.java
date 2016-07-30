@@ -8,30 +8,33 @@ import behaviourTree.Routine;
 
 public class Droid {
 
+	/* FIELD */
 	private String name;
-	private float x, y;
-	public float size;
+	public Vector2 location;
 
+	public float size;
+	private float maxSpeed;
 	private float speed;
 
 	Routine routine;
-
 	Debug debug;
 
+	/* GET SET */
+
 	public float getX() {
-		return x;
+		return location.getX();
 	}
 
 	public void setX(float x) {
-		this.x = x;
+		location.setX(x);
 	}
 
 	public float getY() {
-		return y;
+		return location.getY();
 	}
 
 	public void setY(float y) {
-		this.y = y;
+		location.setY(y);
 	}
 
 	public String getName() {
@@ -50,6 +53,15 @@ public class Droid {
 		this.speed = speed;
 	}
 
+	public float getMaxSpeed() {
+		return maxSpeed;
+	}
+
+	public void setMaxSpeed(float maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+
+	/* CONSTRUCTOR */
 	public Droid() {
 		this(-1);
 	}
@@ -59,10 +71,11 @@ public class Droid {
 	}
 
 	public Droid(int id, float x, float y) {
-		this.x = x;
-		this.y = y;
+		location = new Vector2(x, y);
+
 		size = 25;
-		setSpeed(0.1f);
+		setMaxSpeed(0.1f);
+		setSpeed(getMaxSpeed());
 		debug = new Debug();
 		this.name = String.valueOf(id);
 	}
@@ -74,8 +87,8 @@ public class Droid {
 
 	private void renderDebug(Graphics g) {
 		debug.add("name", name);
-		debug.add("x", x);
-		debug.add("y", y);
+		debug.add("x", location.getX());
+		debug.add("y", location.getY());
 		debug.droidDraw(g, this);
 	}
 
@@ -93,7 +106,7 @@ public class Droid {
 
 	private void renderDroid(Graphics g) {
 		g.setColor(Color.lightGray);
-		g.fillOval(x, y, size, size);
+		g.fillOval(location.getX(), location.getY(), size, size);
 	}
 
 	public boolean isAlive() {
