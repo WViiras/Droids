@@ -9,6 +9,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import behaviourTree.*;
+
 public class Main extends BasicGame {
 
 	List<Droid> droids;
@@ -26,7 +28,10 @@ public class Main extends BasicGame {
 		try {
 			AppGameContainer agc = new AppGameContainer(new Main("Droids"));
 			agc.setDisplayMode(width, height, false);
-//			agc.setTargetFrameRate(30);
+//			agc.setTargetFrameRate(60);
+//			agc.setMinimumLogicUpdateInterval(2000);
+//			agc.setMaximumLogicUpdateInterval(5000);
+//			agc.setUpdateOnlyWhenVisible(false);
 			agc.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -34,14 +39,18 @@ public class Main extends BasicGame {
 	}
 
 	@Override
-	public void init(GameContainer container) throws SlickException {
+	public void init(GameContainer gc) throws SlickException {
 
 		droids = new ArrayList<Droid>();
 
 		cont = new Controller(droids);
 
-		droids.add(new Droid(200, 200));
-		droids.add(new Droid(370, 370));
+		Droid d1 = new Droid(200, 200);
+
+//		d1.setRoutine(new MoveTo(100, 100));
+		d1.setRoutine(new Repeat(new Wander(gc)));
+
+		droids.add(d1);
 
 	}
 
