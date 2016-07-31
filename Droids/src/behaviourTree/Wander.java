@@ -11,6 +11,7 @@ public class Wander extends Routine {
 	private static Random random = new Random();
 	private MoveTo moveTo;
 	private Stand stand;
+	private final int standTime=5;
 
 	public Wander(Board board) {
 		super();
@@ -47,7 +48,7 @@ public class Wander extends Routine {
 		if (this.moveTo.isSuccess()) {
 
 			if (stand == null || !stand.isRunning()) {
-				stand = new Stand(2);
+				stand = new Stand(standTime);
 				stand.start();
 			}
 
