@@ -4,9 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 
-import behaviourTree.MoveTo;
-import behaviourTree.Repeat;
-import behaviourTree.Wander;
+import behaviourTree.*;
 
 public class Controller {
 
@@ -36,12 +34,12 @@ public class Controller {
 	private void createDroid(Board board) {
 		// mouse offset
 		Droid d = new Droid(board.id);
-		d.setX(mX - d.getSize() / 2);
-		d.setY(mY - d.getSize() / 2);
+		d.setX(mX);
+		d.setY(mY);
 
 		d.setRoutine(new Repeat(new Wander(board)));
 
-//		d.setRoutine(new Wander(gc));
+//		d.setRoutine(new Stand());
 
 		board.addDroid(d);
 	}

@@ -131,7 +131,7 @@ public class Droid {
 
 	private void renderDroid(Graphics g) {
 		g.setColor(Color.lightGray);
-		g.fillOval(loc.getX(), loc.getY(), size, size);
+		g.fillOval((float) (loc.getX() - size / 2), (float) (loc.getY() - size / 2), (float) size, (float) size);
 	}
 
 	public boolean isAlive() {
