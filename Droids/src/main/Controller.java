@@ -26,7 +26,7 @@ public class Controller {
 		}
 		if (input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)) {
 			for (Droid droid : board.getDroids()) {
-				droid.setRoutine(new MoveTo(mX - droid.getSize() / 2, mY - droid.getSize() / 2));
+				droid.setRoutine(new MoveTo(mX - droid.size / 2, mY - droid.size / 2));
 			}
 		}
 	}
@@ -34,8 +34,7 @@ public class Controller {
 	private void createDroid(Board board) {
 		// mouse offset
 		Droid d = new Droid(board.id);
-		d.setX(mX);
-		d.setY(mY);
+		d.setLoc(mX, mY);
 
 		d.setRoutine(new Repeat(new Wander(board)));
 

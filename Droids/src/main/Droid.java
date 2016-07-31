@@ -8,18 +8,25 @@ import behaviourTree.Routine;
 
 public class Droid {
 
-	/* FIELD */
-	private String name;
-	private Vector2 loc;
-	private double rotation;
-
-	private double size;
-
-	private double maxSpeed;
-	private double speed;
-
-	private Routine routine;
 	public Debug debug;
+
+	/* FIELDS */
+	public int id;
+	public String name;
+
+	public Vector2 loc;
+	public double rotation;
+
+	public Routine routine;
+
+	public double size;
+	public double maxSpeed;
+	public double speed;
+
+	public double vision;
+	public double range;
+
+	private int health;
 
 	/* GET SET */
 
@@ -27,64 +34,12 @@ public class Droid {
 		return loc.getX();
 	}
 
-	public void setX(double x) {
-		loc.setX(x);
-	}
-
 	public double getY() {
 		return loc.getY();
 	}
 
-	public void setY(double y) {
-		loc.setY(y);
-	}
-
-	public Vector2 getLoc() {
-		return loc;
-	}
-
 	public void setLoc(double x, double y) {
 		loc.setLocation(x, y);
-	}
-
-	public double getRotation() {
-		return rotation;
-	}
-
-	public void setRotation(double rotation) {
-		this.rotation = rotation;
-	}
-
-	public double getSize() {
-		return size;
-	}
-
-	public void setSize(double size) {
-		this.size = size;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-
-	public double getMaxSpeed() {
-		return maxSpeed;
-	}
-
-	public void setMaxSpeed(double maxSpeed) {
-		this.maxSpeed = maxSpeed;
 	}
 
 	/* CONSTRUCTOR */
@@ -97,13 +52,18 @@ public class Droid {
 	}
 
 	public Droid(int id, double x, double y) {
-		loc = new Vector2(x, y);
+		this.id = id;
+		this.name = "droid " + String.valueOf(id);
 
-		size = 25;
-		setMaxSpeed(0.15f);
-		setSpeed(getMaxSpeed());
-		debug = new Debug();
-		this.name = String.valueOf(id);
+		this.loc = new Vector2(x, y);
+
+		this.size = 25;
+		this.maxSpeed = 0.15f;
+		this.speed = maxSpeed;
+
+		this.health = 100;
+
+		this.debug = new Debug();
 	}
 
 	public void render(GameContainer gc, Graphics g) {
@@ -132,11 +92,16 @@ public class Droid {
 
 	private void renderDroid(Graphics g) {
 		g.setColor(Color.lightGray);
-		g.fillOval((float) (loc.getX() - size / 2), (float) (loc.getY() - size / 2), (float) size, (float) size);
+
+		float xLoc = (float) (loc.getX() - size / 2);
+		float yLoc = (float) (loc.getY() - size / 2);
+
+		g.fillOval(xLoc, yLoc, (float) size, (float) size);
 	}
 
 	public boolean isAlive() {
-		// TODO Auto-generated method stub
+		if (health < 0)
+			return false;
 		return true;
 	}
 

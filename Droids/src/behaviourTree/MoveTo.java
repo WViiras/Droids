@@ -36,12 +36,12 @@ public class MoveTo extends Routine {
 
 	private void moveDroid(Droid droid, int delta) {
 
-		double angle = droid.getLoc().getAngle(dest);
+		double angle = droid.loc.getAngle(dest);
 
 		double newX = droid.getX();
 		double newY = droid.getY();
 
-		double velocity = droid.getSpeed() * delta;
+		double velocity = droid.speed * delta;
 
 		double sin = Math.sin(angle);
 		double cos = Math.cos(angle);
@@ -65,8 +65,7 @@ public class MoveTo extends Routine {
 			}
 		}
 
-		droid.setX(newX);
-		droid.setY(newY);
+		droid.setLoc(newX, newY);
 
 		if (isDroidAtDestination(droid)) {
 			succeed();
