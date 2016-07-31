@@ -35,7 +35,7 @@ public class Debug {
 
 	public void droidDraw(Graphics g, Droid d) {
 
-		float renderHeight = d.getY() + d.getSize();
+		float renderHeight = (float) (d.getY() + d.getSize());
 		float renderStep = 16;
 
 		Vector2 dest = new Vector2();
@@ -44,18 +44,18 @@ public class Debug {
 			String key = entry.getKey();
 			Object value = entry.getValue();
 
-			g.drawString(key + ": " + value, d.getX(), renderHeight);
+			g.drawString(key + ": " + value, (float) d.getX(), renderHeight);
 			renderHeight += renderStep;
 
 			if (key.equals("destX")) {
-				dest.setX((float) value);
+				dest.setX((double) value);
 			}
 			if (key.equals("destY")) {
-				dest.setY((float) value);
+				dest.setY((double) value);
 			}
 
 		}
 
-		g.drawLine(d.getX(), d.getY(), dest.getX(), dest.getY());
+		g.drawLine((float) d.getX(), (float) d.getY(), (float) dest.getX(), (float) dest.getY());
 	}
 }

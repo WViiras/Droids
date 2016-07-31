@@ -10,31 +10,32 @@ public class Droid {
 
 	/* FIELD */
 	private String name;
-	public Vector2 loc;
-	private float rotation;
+	private Vector2 loc;
+	private double rotation;
 
-	private float size;
-	private float maxSpeed;
-	private float speed;
+	private double size;
 
-	Routine routine;
+	private double maxSpeed;
+	private double speed;
+
+	private Routine routine;
 	public Debug debug;
 
 	/* GET SET */
 
-	public float getX() {
+	public double getX() {
 		return loc.getX();
 	}
 
-	public void setX(float x) {
+	public void setX(double x) {
 		loc.setX(x);
 	}
 
-	public float getY() {
+	public double getY() {
 		return loc.getY();
 	}
 
-	public void setY(float y) {
+	public void setY(double y) {
 		loc.setY(y);
 	}
 
@@ -42,23 +43,23 @@ public class Droid {
 		return loc;
 	}
 
-	public void setLoc(float x, float y) {
+	public void setLoc(double x, double y) {
 		loc.setLocation(x, y);
 	}
 
-	public float getRotation() {
+	public double getRotation() {
 		return rotation;
 	}
 
-	public void setRotation(float rotation) {
+	public void setRotation(double rotation) {
 		this.rotation = rotation;
 	}
 
-	public float getSize() {
+	public double getSize() {
 		return size;
 	}
 
-	public void setSize(float size) {
+	public void setSize(double size) {
 		this.size = size;
 	}
 
@@ -70,19 +71,19 @@ public class Droid {
 		this.name = name;
 	}
 
-	public float getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed(float speed) {
+	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 
-	public float getMaxSpeed() {
+	public double getMaxSpeed() {
 		return maxSpeed;
 	}
 
-	public void setMaxSpeed(float maxSpeed) {
+	public void setMaxSpeed(double maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
 
@@ -95,11 +96,11 @@ public class Droid {
 		this(id, 0f, 0f);
 	}
 
-	public Droid(int id, float x, float y) {
+	public Droid(int id, double x, double y) {
 		loc = new Vector2(x, y);
 
 		size = 25;
-		setMaxSpeed(0.1f);
+		setMaxSpeed(0.15f);
 		setSpeed(getMaxSpeed());
 		debug = new Debug();
 		this.name = String.valueOf(id);
@@ -135,6 +136,7 @@ public class Droid {
 	}
 
 	public boolean isAlive() {
+		// TODO Auto-generated method stub
 		return true;
 	}
 

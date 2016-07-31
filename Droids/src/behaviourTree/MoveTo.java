@@ -8,9 +8,9 @@ public class MoveTo extends Routine {
 
 	final protected Vector2 dest;
 
-	final float EPSILON = 1f;
+	final double EPSILON = 3f;
 
-	public MoveTo(float destX, float destY) {
+	public MoveTo(double destX, double destY) {
 		super();
 		this.dest = new Vector2(destX, destY);
 	}
@@ -36,10 +36,10 @@ public class MoveTo extends Routine {
 
 	private void moveDroid(Droid droid, int delta) {
 
-		float newX = droid.getX();
-		float newY = droid.getY();
+		double newX = droid.getX();
+		double newY = droid.getY();
 
-		float speed = droid.getSpeed() * delta;
+		double speed = droid.getSpeed() * delta;
 
 		if (droid.getX() != dest.getX()) {
 			if (dest.getX() > droid.getX()) {
