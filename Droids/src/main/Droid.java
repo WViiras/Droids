@@ -6,20 +6,12 @@ import org.newdawn.slick.Graphics;
 
 import behaviourTree.Routine;
 
-public class Droid {
+public class Droid extends Entity {
 
-	public Debug debug;
-
-	/* FIELDS */
-	public int id;
 	public String name;
-
-	public Vector2 loc;
-	public double rotation;
 
 	public Routine routine;
 
-	public double size;
 	public double maxSpeed;
 	public double speed;
 
@@ -28,37 +20,15 @@ public class Droid {
 
 	private int health;
 
-	/* GET SET */
-
-	public double getX() {
-		return loc.getX();
-	}
-
-	public double getY() {
-		return loc.getY();
-	}
-
-	public void setLoc(double x, double y) {
-		loc.setLocation(x, y);
-	}
-
 	/* CONSTRUCTOR */
-	public Droid() {
-		this(-1);
-	}
-
-	public Droid(int id) {
-		this(id, 0f, 0f);
-	}
 
 	public Droid(int id, double x, double y) {
-		this.id = id;
+		super(id, x, y);
+
 		this.name = "droid " + String.valueOf(id);
 
-		this.loc = new Vector2(x, y);
-
 		this.size = 25;
-		this.maxSpeed = 0.15f;
+		this.maxSpeed = 0.1f;
 		this.speed = maxSpeed;
 
 		this.health = 100;

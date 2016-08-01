@@ -21,8 +21,9 @@ public class MoveTo extends Routine {
 
 	@Override
 	public void act(Droid droid, int delta, Board board) {
-		droid.debug.add("destX", dest.getX());
-		droid.debug.add("destY", dest.getY());
+		droid.debug.addLine(droid.name, droid.loc, dest);
+		droid.debug.addText("destX", dest.getX());
+		droid.debug.addText("destY", dest.getY());
 		if (isRunning()) {
 			if (!droid.isAlive()) {
 				fail();
@@ -46,8 +47,8 @@ public class MoveTo extends Routine {
 		double sin = Math.sin(angle);
 		double cos = Math.cos(angle);
 
-		droid.debug.add("sin", sin);
-		droid.debug.add("cos", cos);
+		droid.debug.addText("sin", sin);
+		droid.debug.addText("cos", cos);
 
 		if (droid.getX() != dest.getX()) {
 

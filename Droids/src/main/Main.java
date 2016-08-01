@@ -43,12 +43,18 @@ public class Main extends BasicGame {
 		Random rand = new Random();
 
 		for (int i = 0; i < 4; i++) {
-			board.addDroid(i, new Droid(board.id, (float)rand.nextInt(board.width), (float)rand.nextInt(board.height)));
+			double randWidth = rand.nextDouble() * board.width;
+			double randHeight = rand.nextDouble() * board.height;
+
+			board.addDroid(i, new Droid(board.nextId(), randWidth, randHeight));
 		}
 
 		for (Droid droid : board.getDroids()) {
 			droid.setRoutine(new Repeat(new Wander(board)));
 		}
+
+		Droid player = new Player(board.nextId(), board.width / 2, board.height / 2);
+		board.addDroid(player);
 	}
 
 	@Override

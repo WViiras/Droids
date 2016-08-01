@@ -17,7 +17,7 @@ public class Board {
 		width = gc.getWidth();
 		height = gc.getHeight();
 		droids = new ArrayList<Droid>();
-		id = 0;
+		id = -1;
 	}
 
 	public List<Droid> getDroids() {
@@ -26,10 +26,13 @@ public class Board {
 
 	public void addDroid(Droid droid) {
 		droids.add(droid);
-		id++;
 	}
 
 	public void addDroid(int id, Droid droid) {
 		addDroid(droid);
+	}
+
+	public int nextId() {
+		return ++id;
 	}
 }

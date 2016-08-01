@@ -21,6 +21,11 @@ public class Controller {
 		mX = input.getMouseX();
 		mY = input.getMouseY();
 
+		Vector2 screenC = new Vector2(gc.getWidth() / 2, gc.getHeight() / 2);
+		Vector2 mLoc = new Vector2(mX, mY);
+
+		Main.d.addLine("moustToCenter", screenC, mLoc);
+
 		if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			createDroid(board);
 		}
@@ -29,12 +34,21 @@ public class Controller {
 				droid.setRoutine(new MoveTo(mX - droid.size / 2, mY - droid.size / 2));
 			}
 		}
+
+		if (input.isKeyPressed(Input.KEY_A)) {
+			for (Droid droid : board.getDroids()) {
+				droid.speed += 0.01;
+			}
+		} else if (input.isKeyPressed(Input.KEY_D)) {
+			for (Droid droid : board.getDroids()) {
+				droid.speed -= 0.01;
+			}
+		}
 	}
 
 	private void createDroid(Board board) {
 		// mouse offset
-		Droid d = new Droid(board.id);
-		d.setLoc(mX, mY);
+		Droid d = new Droid(board.id, mX, mY);
 
 		d.setRoutine(new Repeat(new Wander(board)));
 
@@ -44,8 +58,8 @@ public class Controller {
 	}
 
 	public void render(GameContainer gc, Graphics g) {
-		Main.d.add("mX", mX);
-		Main.d.add("mY", mY);
+		Main.d.addText("mX", mX);
+		Main.d.addText("mY", mY);
 	}
 
 }
