@@ -48,7 +48,7 @@ public class Controller {
 
 	private void createDroid(Board board) {
 		// mouse offset
-		Droid d = new Droid(board.id, mX, mY);
+		Droid d = new Droid(mX, mY);
 
 		d.setRoutine(new Repeat(new Wander(board)));
 

@@ -4,7 +4,11 @@ import org.newdawn.slick.GameContainer;
 
 public class Player extends Droid {
 
-	public Player(int id, int x, int y) {
+	public Player(double x, double y) {
+		this(-1, x, y);
+	}
+
+	public Player(int id, double x, double y) {
 		super(id, x, y);
 		this.name = "player";
 	}

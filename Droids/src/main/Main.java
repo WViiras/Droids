@@ -46,14 +46,14 @@ public class Main extends BasicGame {
 			double randWidth = rand.nextDouble() * board.width;
 			double randHeight = rand.nextDouble() * board.height;
 
-			board.addDroid(i, new Droid(board.nextId(), randWidth, randHeight));
+			board.addDroid(new Droid(randWidth, randHeight));
 		}
 
 		for (Droid droid : board.getDroids()) {
 			droid.setRoutine(new Repeat(new Wander(board)));
 		}
 
-		Droid player = new Player(board.nextId(), board.width / 2, board.height / 2);
+		Droid player = new Player(board.width / 2, board.height / 2);
 		board.addDroid(player);
 	}
 

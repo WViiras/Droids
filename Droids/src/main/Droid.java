@@ -8,9 +8,9 @@ import behaviourTree.Routine;
 
 public class Droid extends Entity {
 
-	public String name;
-
 	public Routine routine;
+
+	public String name;
 
 	public double maxSpeed;
 	public double speed;
@@ -22,10 +22,14 @@ public class Droid extends Entity {
 
 	/* CONSTRUCTOR */
 
+	public Droid(double x, double y) {
+		this(-1, x, y);
+	}
+
 	public Droid(int id, double x, double y) {
 		super(id, x, y);
 
-		this.name = "droid " + String.valueOf(id);
+		this.name = "droid ";
 
 		this.size = 25;
 		this.maxSpeed = 0.1f;
@@ -59,9 +63,9 @@ public class Droid extends Entity {
 	}
 
 	public void renderDebug(Graphics g) {
-		debug.addText("name", name);
-		debug.addText("x", loc.getX());
-		debug.addText("y", loc.getY());
+		debug.addText(name, id);
+//		debug.addText("x", loc.getX());
+//		debug.addText("y", loc.getY());
 		debug.addText("speed", speed);
 		debug.drawTextRelative(g, this);
 		debug.drawLines(g);

@@ -26,13 +26,6 @@ public class Board {
 
 	public void addDroid(Droid droid) {
 		droids.add(droid);
-	}
-
-	public void addDroid(int id, Droid droid) {
-		addDroid(droid);
-	}
-
-	public int nextId() {
-		return ++id;
+		droid.id = ++id;
 	}
 }
