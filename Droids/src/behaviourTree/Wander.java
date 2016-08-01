@@ -11,7 +11,7 @@ public class Wander extends Routine {
 	private static Random random = new Random();
 	private MoveTo moveTo;
 	private Stand stand;
-	private final int standTime=5;
+	private final int standTime = 5;
 
 	public Wander(Board board) {
 		super();
@@ -31,7 +31,6 @@ public class Wander extends Routine {
 
 	@Override
 	public void act(Droid droid, int delta, Board board) {
-
 		if (!moveTo.isRunning()) {
 			if (stand.isRunning()) {
 				this.stand.act(droid, delta, board);

@@ -21,7 +21,7 @@ public class MoveTo extends Routine {
 
 	@Override
 	public void act(Droid droid, int delta, Board board) {
-		droid.debug.addLine(droid.name, droid.loc, dest);
+		droid.debug.addLine(String.valueOf(droid.id), droid.loc, dest);
 //		droid.debug.addText("destX", dest.getX());
 //		droid.debug.addText("destY", dest.getY());
 		if (isRunning()) {

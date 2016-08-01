@@ -11,6 +11,12 @@ public abstract class Entity {
 	public double rotation;
 
 	public double size;
+	public double maxSpeed;
+	public double speed;
+
+	public int health;
+
+	/* GET SET */
 
 	public double getX() {
 		return loc.getX();
@@ -24,9 +30,7 @@ public abstract class Entity {
 		loc.setLocation(x, y);
 	}
 
-	public Entity() {
-		this(-1);
-	}
+	/* CONSTRUCTOR */
 
 	public Entity(int id) {
 		this(id, 0d, 0d);
@@ -34,12 +38,20 @@ public abstract class Entity {
 
 	public Entity(int id, double x, double y) {
 		this.id = id;
-		loc = new Vector2(x, y);
-		size = 0;
+
+		this.loc = new Vector2(x, y);
+		this.rotation = 0;
+
+		this.size = 0;
+		this.maxSpeed = 0;
+		this.speed = 0;
+
+		this.health = 100;
 	}
 
-	public Entity(int id, double x, double y, double size) {
-		this(id, x, y);
-		this.size = size;
+	public boolean isAlive() {
+		if (health < 0)
+			return false;
+		return true;
 	}
 }

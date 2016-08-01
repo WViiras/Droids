@@ -10,7 +10,6 @@ public class Player extends Droid {
 
 	public Player(int id, double x, double y) {
 		super(id, x, y);
-		this.name = "player";
 	}
 
 	public void update(GameContainer gc, int delta, Board board) {

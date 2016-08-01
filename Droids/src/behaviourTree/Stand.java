@@ -8,10 +8,6 @@ public class Stand extends Routine {
 	private long startTime;
 	private long waitTime;
 
-	public Stand() {
-		this(0);
-	}
-
 	public Stand(int i) {
 		super();
 		this.waitTime = i * 1000000000;

@@ -10,16 +10,6 @@ public class Droid extends Entity {
 
 	public Routine routine;
 
-	public String name;
-
-	public double maxSpeed;
-	public double speed;
-
-	public double vision;
-	public double range;
-
-	private int health;
-
 	/* CONSTRUCTOR */
 
 	public Droid(double x, double y) {
@@ -29,13 +19,9 @@ public class Droid extends Entity {
 	public Droid(int id, double x, double y) {
 		super(id, x, y);
 
-		this.name = "droid ";
-
 		this.size = 25;
 		this.maxSpeed = 0.1f;
 		this.speed = maxSpeed;
-
-		this.health = 100;
 
 		this.debug = new Debug();
 	}
@@ -56,14 +42,14 @@ public class Droid extends Entity {
 	private void renderDroid(Graphics g) {
 		g.setColor(Color.lightGray);
 
-		float xLoc = (float) (loc.getX() - size / 2);
-		float yLoc = (float) (loc.getY() - size / 2);
+		float xLoc = (float) (getX() - size / 2);
+		float yLoc = (float) (getY() - size / 2);
 
 		g.fillOval(xLoc, yLoc, (float) size, (float) size);
 	}
 
 	public void renderDebug(Graphics g) {
-		debug.addText(name, id);
+		debug.addText("id", id);
 //		debug.addText("x", loc.getX());
 //		debug.addText("y", loc.getY());
 		debug.addText("speed", speed);
@@ -74,11 +60,4 @@ public class Droid extends Entity {
 	public void setRoutine(Routine routine) {
 		this.routine = routine;
 	}
-
-	public boolean isAlive() {
-		if (health < 0)
-			return false;
-		return true;
-	}
-
 }
