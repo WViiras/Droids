@@ -27,10 +27,6 @@ public class Main extends BasicGame {
 		try {
 			AppGameContainer agc = new AppGameContainer(new Main("Droids"));
 			agc.setDisplayMode(width, height, false);
-//			agc.setTargetFrameRate(60);
-//			agc.setMinimumLogicUpdateInterval(2000);
-//			agc.setMaximumLogicUpdateInterval(5000);
-//			agc.setUpdateOnlyWhenVisible(false);
 			agc.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -42,7 +38,7 @@ public class Main extends BasicGame {
 
 		this.board = new Board(gc);
 
-		cont = new Controller(board);
+		this.cont = new Controller(board);
 
 		Random rand = new Random();
 
@@ -64,7 +60,8 @@ public class Main extends BasicGame {
 			droid.render(gc, g);
 		}
 
-		d.draw(g);
+		d.drawText(g);
+		d.drawLines(g);
 	}
 
 	@Override

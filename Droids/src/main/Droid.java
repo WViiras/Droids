@@ -71,23 +71,12 @@ public class Droid {
 		renderDebug(g);
 	}
 
-	private void renderDebug(Graphics g) {
-		debug.add("name", name);
-		debug.add("x", loc.getX());
-		debug.add("y", loc.getY());
-		debug.droidDraw(g, this);
-	}
-
 	public void update(GameContainer gc, int delta, Board board) {
 		if (routine.getState() == null) {
 			routine.start();
 		}
 
 		routine.act(this, delta, board);
-	}
-
-	public void setRoutine(Routine routine) {
-		this.routine = routine;
 	}
 
 	private void renderDroid(Graphics g) {
@@ -97,6 +86,19 @@ public class Droid {
 		float yLoc = (float) (loc.getY() - size / 2);
 
 		g.fillOval(xLoc, yLoc, (float) size, (float) size);
+	}
+
+	public void renderDebug(Graphics g) {
+		debug.addText("name", name);
+		debug.addText("x", loc.getX());
+		debug.addText("y", loc.getY());
+		debug.addText("speed", speed);
+		debug.drawTextRelative(g, this);
+		debug.drawLines(g);
+	}
+
+	public void setRoutine(Routine routine) {
+		this.routine = routine;
 	}
 
 	public boolean isAlive() {

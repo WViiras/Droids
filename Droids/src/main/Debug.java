@@ -8,23 +8,33 @@ import org.newdawn.slick.Graphics;
 
 public class Debug {
 
-	public LinkedHashMap<String, Object> debug;
+	public LinkedHashMap<String, Object> text;
+	public LinkedHashMap<String, Vector2[]> line;
 
 	public Debug() {
-		debug = new LinkedHashMap<String, Object>();
+		text = new LinkedHashMap<String, Object>();
+		line = new LinkedHashMap<String, Vector2[]>();
 	}
 
-	public void add(String s, Object o) {
-		debug.put(s, o);
+	public void addText(String s, Object o) {
+		text.put(s, o);
 	}
 
-	public void draw(Graphics g) {
+	public void addLine(String s, Vector2 a, Vector2 b) {
+		Vector2[] line = new Vector2[2];
+		line[0] = a;
+		line[1] = b;
+
+		this.line.put(s, line);
+	}
+
+	public void drawText(Graphics g) {
 		g.setColor(Color.white);
 
 		float renderHeight = 64;
 		float renderStep = 16;
 
-		for (Map.Entry<String, Object> entry : debug.entrySet()) {
+		for (Map.Entry<String, Object> entry : text.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
 
@@ -33,29 +43,26 @@ public class Debug {
 		}
 	}
 
-	public void droidDraw(Graphics g, Droid d) {
-
-		float renderHeight = (float) (d.getY() + d.size);
+	public void drawTextRelative(Graphics g, Entity e) {
+		float renderHeight = (float) (e.getY() + e.size);
 		float renderStep = 16;
 
-		Vector2 dest = new Vector2();
-
-		for (Map.Entry<String, Object> entry : debug.entrySet()) {
+		for (Map.Entry<String, Object> entry : text.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
 
-			g.drawString(key + ": " + value, (float) d.getX(), renderHeight);
+			g.drawString(key + ": " + value, (float) e.getX(), renderHeight);
 			renderHeight += renderStep;
+		}
+	}
 
-			if (key.equals("destX")) {
-				dest.x = (double) value;
-			}
-			if (key.equals("destY")) {
-				dest.y = (double) value;
-			}
+	public void drawLines(Graphics g) {
+		for (Map.Entry<String, Vector2[]> entry : line.entrySet()) {
+//			String key = entry.getKey();
+			Vector2[] value = entry.getValue();
+
+			g.drawLine((float) value[0].x, (float) value[0].y, (float) value[1].x, (float) value[1].y);
 
 		}
-
-		g.drawLine((float) d.getX(), (float) d.getY(), (float) dest.getX(), (float) dest.getY());
 	}
 }
