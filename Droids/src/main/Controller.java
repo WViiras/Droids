@@ -31,7 +31,7 @@ public class Controller {
 		}
 		if (input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)) {
 			for (Droid droid : board.getDroids()) {
-				droid.setRoutine(new MoveTo(mX - droid.size / 2, mY - droid.size / 2));
+				droid.setRoutine(new MoveTo(new Vector2(mX - droid.size / 2, mY - droid.size / 2)));
 			}
 		}
 

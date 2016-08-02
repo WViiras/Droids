@@ -4,14 +4,18 @@ import java.util.Random;
 
 import main.Board;
 import main.Droid;
+import main.Vector2;
 
 public class Wander extends Routine {
 
 	private Board board;
+
 	private static Random random = new Random();
+
 	private MoveTo moveTo;
 	private Stand stand;
-	private final int standTime = 5;
+
+	private final int standTime = 1;
 
 	public Wander(Board board) {
 		super();
@@ -26,7 +30,12 @@ public class Wander extends Routine {
 	}
 
 	public void reset() {
-		this.moveTo = new MoveTo(random.nextInt(board.width), random.nextInt(board.height));
+
+		double targetX = random.nextInt(board.width);
+		double targetY = random.nextInt(board.height);
+
+		Vector2 target = new Vector2(targetX, targetY);
+		this.moveTo = new MoveTo(target);
 	}
 
 	@Override

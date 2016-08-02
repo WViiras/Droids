@@ -8,7 +8,7 @@ public abstract class Entity {
 	public int id;
 
 	public Vector2 loc;
-	public double rotation;
+	public double angle;
 
 	public double size;
 	public double maxSpeed;
@@ -40,7 +40,7 @@ public abstract class Entity {
 		this.id = id;
 
 		this.loc = new Vector2(x, y);
-		this.rotation = 0;
+		this.angle = 0;
 
 		this.size = 0;
 		this.maxSpeed = 0;

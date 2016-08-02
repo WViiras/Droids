@@ -58,11 +58,21 @@ public class Debug {
 
 	public void drawLines(Graphics g) {
 		for (Map.Entry<String, Vector2[]> entry : line.entrySet()) {
-//			String key = entry.getKey();
+			String key = entry.getKey();
 			Vector2[] value = entry.getValue();
 
+			g.setColor(getColor(key));
 			g.drawLine((float) value[0].x, (float) value[0].y, (float) value[1].x, (float) value[1].y);
 
 		}
+	}
+	
+	private Color getColor(String s) {
+
+		if (s.equals("red")) {
+			return Color.red;
+		}
+
+		return Color.gray;
 	}
 }

@@ -1,5 +1,7 @@
 package behaviourTree;
 
+import java.util.concurrent.TimeUnit;
+
 import main.Board;
 import main.Droid;
 
@@ -10,7 +12,7 @@ public class Stand extends Routine {
 
 	public Stand(int i) {
 		super();
-		this.waitTime = i * 1000000000;
+		this.waitTime = i;
 	}
 
 	public void start() {
@@ -31,9 +33,14 @@ public class Stand extends Routine {
 	}
 
 	public boolean timeIsPassed() {
+
+		long waitNano = TimeUnit.NANOSECONDS.convert(waitTime, TimeUnit.SECONDS);
+
 		long estTime = System.nanoTime() - startTime;
 
-		if (Long.compare(estTime, waitTime) >= 0) {
+//		droid.debug.addText("estTime", TimeUnit.SECONDS.convert(estTime, TimeUnit.NANOSECONDS));
+
+		if (Long.compare(estTime, waitNano) >= 0) {
 			return true;
 		}
 
