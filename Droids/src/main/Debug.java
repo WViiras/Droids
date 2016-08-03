@@ -8,8 +8,8 @@ import org.newdawn.slick.Graphics;
 
 public class Debug {
 
-	public LinkedHashMap<String, Object> text;
-	public LinkedHashMap<String, Vector2[]> line;
+	private LinkedHashMap<String, Object> text;
+	private LinkedHashMap<String, Vector2[]> line;
 
 	public Debug() {
 		text = new LinkedHashMap<String, Object>();

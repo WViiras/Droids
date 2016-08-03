@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.newdawn.slick.GameContainer;
 
+import behaviourTree.*;
+
 public class Board {
 
 	public final int width;
@@ -37,8 +39,8 @@ public class Board {
 					if (droid1.equals(droid2)) {
 						break;
 					}
-					droid1.routine=new Wander(this);
-					droid2.routine=new Wander(this);
+					droid1.routine = new Repeat(new Wander(this));
+					droid2.routine = new Repeat(new Wander(this));
 				}
 			}
 		}

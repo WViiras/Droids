@@ -2,6 +2,9 @@ package main;
 
 public class Vector2 {
 
+	private final double degToRad = Math.PI / 180;
+	private final double radToDeg = 180 / Math.PI;
+
 	/* FIELD */
 
 	public double x, y;
@@ -37,15 +40,11 @@ public class Vector2 {
 		double deltaX = target.getX() - this.getX();
 		double deltaY = this.getY() - target.getY();
 
-		double aTan2 = Math.atan2(deltaX, deltaY) * 180 / Math.PI;
+		double theta = Math.atan2(deltaY, deltaX) * radToDeg;
 
-		if ((target.getX() > this.getX())) {
-			return aTan2;
-		} else if ((target.getX() < this.getX())) {
-			return 360 - aTan2;
-		}
-
-		return Math.atan2(0, 0);
+		if (theta < 0)
+			theta += 360;
+		return theta;
 	}
 
 }

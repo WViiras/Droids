@@ -21,11 +21,6 @@ public class Controller {
 		mX = input.getMouseX();
 		mY = input.getMouseY();
 
-		Vector2 screenC = new Vector2(gc.getWidth() / 2, gc.getHeight() / 2);
-		Vector2 mLoc = new Vector2(mX, mY);
-
-		Main.d.addLine("moustToCenter", screenC, mLoc);
-
 		if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			createDroid(board);
 		}

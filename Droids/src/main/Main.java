@@ -66,6 +66,9 @@ public class Main extends BasicGame {
 			droid.render(gc, g);
 		}
 
+		cont.render(gc, g);
+		
+		
 		d.drawText(g);
 		d.drawLines(g);
 	}

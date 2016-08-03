@@ -44,6 +44,7 @@ public class MoveTo extends Routine {
 
 	private void moveDroid(Droid droid, int delta) {
 
+		// new locations to move to. starts from current position
 		double newX = droid.getX();
 		double newY = droid.getY();
 
@@ -52,33 +53,8 @@ public class MoveTo extends Routine {
 
 		double velocity = droid.speed * delta;
 
-		double sin = Math.sin(droid.angle);
-		double cos = Math.cos(droid.angle);
-
-		double aX = droid.getX() + 40 * cos;
-		double aY = droid.getY() + 40 * sin;
-
-		droid.debug.addLine("red", droid.loc, new Vector2(aX, aY));
-		droid.debug.addLine("red", droid.loc, new Vector2(aX, aY));
-
-//		droid.debug.addText("sin", sin);
-//		droid.debug.addText("cos", cos);
-
-		if (droid.getX() != dest.getX()) {
-
-			if (dest.getX() > droid.getX()) {
-				newX += velocity * cos;
-			} else {
-				newX -= velocity * cos;
-			}
-		}
-		if (droid.getY() != dest.getY()) {
-			if (dest.getY() > droid.getY()) {
-				newY += velocity * sin;
-			} else {
-				newY -= -velocity * sin;
-			}
-		}
+		newX += Math.sin(droid.angle) * velocity;
+		newY += Math.cos(droid.angle) * velocity;
 
 		droid.setLoc(newX, newY);
 
@@ -93,7 +69,7 @@ public class MoveTo extends Routine {
 		droid.debug.addText("droidAngle", droid.angle);
 
 		// TODO rotate left
-		
+
 		// TODO rotate right
 
 		droid.debug.addText("droidAngle", droid.angle);
