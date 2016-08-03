@@ -78,6 +78,8 @@ public class Main extends BasicGame {
 		for (Droid droid : board.getDroids()) {
 			droid.update(gc, delta, board);
 		}
+
+		board.findCollision();
 	}
 
 }

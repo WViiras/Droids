@@ -28,4 +28,19 @@ public class Board {
 		droids.add(droid);
 		droid.id = ++id;
 	}
+
+	public void findCollision() {
+
+		for (Droid droid1 : droids) {
+			for (Droid droid2 : droids) {
+				if (droid1.collides(droid2)) {
+					if (droid1.equals(droid2)) {
+						break;
+					}
+					droid1.routine=new Wander(this);
+					droid2.routine=new Wander(this);
+				}
+			}
+		}
+	}
 }

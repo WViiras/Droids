@@ -57,6 +57,21 @@ public class Droid extends Entity {
 		debug.drawLines(g);
 	}
 
+	public boolean collides(Entity e) {
+
+		double r1 = this.size / 2;
+		double r2 = this.size / 2;
+
+		double xDist = e.getX() - this.getX();
+		double yDist = e.getY() - this.getY();
+
+		double dist = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+
+		return Double.compare(dist, r1 + r2) < 0;
+
+//		return dist < (r1 + r2);
+	}
+
 	public void setRoutine(Routine routine) {
 		this.routine = routine;
 	}

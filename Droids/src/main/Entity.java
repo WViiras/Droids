@@ -49,6 +49,10 @@ public abstract class Entity {
 		this.health = 100;
 	}
 
+	public boolean collides(Entity e) {
+		return false;
+	}
+
 	public boolean isAlive() {
 		if (health < 0)
 			return false;

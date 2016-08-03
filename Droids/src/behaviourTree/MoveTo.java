@@ -29,16 +29,16 @@ public class MoveTo extends Routine {
 		droid.debug.addLine(String.valueOf(droid.id), droid.loc, dest);
 
 		if (this.isRunning()) {
-			if (Double.compare(droid.angle, destAngle) == 0) {
+//			if (Double.compare(droid.angle, destAngle) == 0) {
 				if (droidIsAtDestination(droid)) {
 					succeed();
 					return;
 				} else {
 					moveDroid(droid, delta);
 				}
-			} else {
+//			} else {
 				rotateDroid(droid, delta);
-			}
+//			}
 		}
 	}
 
@@ -101,7 +101,7 @@ public class MoveTo extends Routine {
 
 	private boolean droidIsAtDestination(Droid droid) {
 
-		double EPSILON = 2d;
+		double EPSILON = 3d;
 		double xDist = Math.abs(dest.getX() - droid.getX());
 		double yDist = Math.abs(dest.getY() - droid.getY());
 
