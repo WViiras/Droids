@@ -26,10 +26,6 @@ public class Vector2 {
 
 	/* CONSTRUCTOR */
 
-	public Vector2() {
-		this(0f, 0f);
-	}
-
 	public Vector2(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -47,4 +43,10 @@ public class Vector2 {
 		return theta;
 	}
 
+	public double distanceTo(Vector2 target) {
+		double deltaX = this.x - target.x;
+		double deltaY = target.y - this.y;
+
+		return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+	}
 }
