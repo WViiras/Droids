@@ -9,23 +9,25 @@ import org.newdawn.slick.Graphics;
 public class Debug {
 
 	private LinkedHashMap<String, Object> text;
-	private LinkedHashMap<String, Vector2[]> line;
+	private LinkedHashMap<String, Object[]> line;
 
 	public Debug() {
 		text = new LinkedHashMap<String, Object>();
-		line = new LinkedHashMap<String, Vector2[]>();
+		line = new LinkedHashMap<String, Object[]>();
 	}
 
 	public void addText(String s, Object o) {
 		text.put(s, o);
 	}
 
-	public void addLine(String s, Vector2 a, Vector2 b) {
-		Vector2[] line = new Vector2[2];
-		line[0] = a;
-		line[1] = b;
+	public void addLine(String name, Vector2 a, Vector2 b) {
+		Object[] line = new Object[] { a, b, Color.gray };
+		this.line.put(name, line);
+	}
 
-		this.line.put(s, line);
+	public void addLine(String name, Vector2 a, Vector2 b, Color color) {
+		Object[] line = new Object[] { a, b, color };
+		this.line.put(name, line);
 	}
 
 	public void drawText(Graphics g) {
@@ -57,22 +59,25 @@ public class Debug {
 	}
 
 	public void drawLines(Graphics g) {
-		for (Map.Entry<String, Vector2[]> entry : line.entrySet()) {
-			String key = entry.getKey();
-			Vector2[] value = entry.getValue();
+		for (Map.Entry<String, Object[]> o : line.entrySet()) {
 
-			g.setColor(getColor(key));
-			g.drawLine((float) value[0].x, (float) value[0].y, (float) value[1].x, (float) value[1].y);
+			String key = o.getKey();
+			Object[] value = o.getValue();
+
+			/*
+			 * 0 name
+			 * 1 color
+			 * 2 A
+			 * 3 B
+			 */
+
+			Vector2 a = (Vector2) value[0];
+			Vector2 b = (Vector2) value[1];
+			Color color = (Color) value[2];
+
+			g.setColor(color);
+			g.drawLine((float) a.getX(), (float) a.getY(), (float) b.getX(), (float) b.getY());
 
 		}
-	}
-	
-	private Color getColor(String s) {
-
-		if (s.equals("red")) {
-			return Color.red;
-		}
-
-		return Color.gray;
 	}
 }
