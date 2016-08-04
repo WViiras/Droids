@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.newdawn.slick.GameContainer;
 
-import behaviourTree.*;
-
 public class Board {
 
 	public final int width;
@@ -14,12 +12,18 @@ public class Board {
 	public int id;
 
 	public List<Droid> droids;
+	private Physics physics;
 
 	public Board(GameContainer gc) {
-		width = gc.getWidth();
-		height = gc.getHeight();
-		droids = new ArrayList<Droid>();
-		id = -1;
+		this.width = gc.getWidth();
+		this.height = gc.getHeight();
+		this.droids = new ArrayList<Droid>();
+		this.id = -1;
+		this.physics = new Physics(this);
+	}
+
+	public void update(GameContainer gc, int delta) {
+		physics.update(gc, delta);
 	}
 
 	public List<Droid> getDroids() {
@@ -33,16 +37,5 @@ public class Board {
 
 	public void findCollision() {
 
-		for (Droid droid1 : droids) {
-			for (Droid droid2 : droids) {
-				if (droid1.collides(droid2)) {
-					if (droid1.equals(droid2)) {
-						break;
-					}
-					droid1.routine = new Repeat(new Wander(this));
-					droid2.routine = new Repeat(new Wander(this));
-				}
-			}
-		}
 	}
 }
